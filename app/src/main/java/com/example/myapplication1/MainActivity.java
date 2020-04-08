@@ -3,11 +3,13 @@ package com.example.myapplication1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,58 +18,63 @@ public class MainActivity extends AppCompatActivity {
     TextView result;
     Double firstValues, secondValues, result_op;
     String opiration;
-    Double number1;
-    Double number2;
-    String operator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         result = findViewById(R.id.result_field);
-        if (savedInstanceState !=null){
-           number1 =  savedInstanceState.getDouble("number1 ");
-           number2 =  savedInstanceState.getDouble("number2 ");
-           operator =  savedInstanceState.getString("operator ");
-           firstValues = number1;
-           secondValues = number2;
-           opiration = operator;
+        if(savedInstanceState != null){
+            firstValues = savedInstanceState.getDouble("calkuly");
+            secondValues = savedInstanceState.getDouble("secondValues");
+            opiration = savedInstanceState.getString("opiration");
         }
-        Log.d("calkuly","onCreate");
+        Log.d("calkuly", "onCreate");
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(firstValues != null){
+            outState.putDouble("calkuly",firstValues);
+        }
+        if(secondValues != null){
+            outState.putDouble("secondValues",secondValues);
+        }
+        if(opiration != null){
+            outState.putString("opiration",opiration);
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("calkuly","onStart");
+        Log.d("calkuly", "onStart");
     }
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("calkuly","onResume");
+        Log.d("calkuly", "onResume");
     }
-
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("calkuly","onStop");
+        Log.d("calkuly", "onStop");
     }
-
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d("calkuly","onRestart");
+        Log.d("calkuly", "onRestart");
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("calkuly","onDestroy");
+        Log.d("calkuly", "onDestroy");
     }
-
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("calkuly","onPause");
+        Log.d("calkuly", "onPause");
     }
     public void onNumberClick(View view) {
         switch (view.getId()) {
@@ -109,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.clear:
                 result.setText(null);
                 break;
-
             case R.id.back:
                 String str;
                 str = result.getText().toString();
@@ -166,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
     public void plus() {
         result_op = firstValues + secondValues;
         result.setText(firstValues + "+" + secondValues + "=" + result_op);
@@ -181,23 +186,9 @@ public class MainActivity extends AppCompatActivity {
         result_op = firstValues * secondValues;
         result.setText(firstValues + "*" + secondValues + "=" + result_op);
     }
-    public void division(){
+
+    public void division() {
         result_op = firstValues / secondValues;
         result.setText(firstValues + "/" + secondValues + "=" + result_op);
     }
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (firstValues != null){
-            outState.putDouble("number1", firstValues);
-        }
-        if (secondValues != null){
-            outState.putDouble("number2", secondValues);
-        }
-        if (opiration != null){
-            outState.putString("operator", opiration);
-        }
-        Log.d("calkuly","onSaveInstanceState");
-    }
-
 }
