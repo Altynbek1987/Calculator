@@ -191,4 +191,11 @@ public class MainActivity extends AppCompatActivity {
         result_op = firstValues / secondValues;
         result.setText(firstValues + "/" + secondValues + "=" + result_op);
     }
+
+    public void onSaveClick(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("result", result.getText().toString());
+        setResult(RESULT_OK,intent);
+        finish();
+    }
 }
