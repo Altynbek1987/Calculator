@@ -2,6 +2,7 @@ package com.example.myapplication1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
     TextView result;
     Double firstValues, secondValues, result_op;
     String opiration;
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             opiration = savedInstanceState.getString("opiration");
         }
         Log.d("calkuly", "onCreate");
+
     }
 
     @Override
@@ -198,4 +199,5 @@ public class MainActivity extends AppCompatActivity {
         setResult(RESULT_OK,intent);
         finish();
     }
+
 }
